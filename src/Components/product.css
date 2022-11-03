@@ -1,0 +1,14 @@
+.product-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid white;
+  width: 30%;
+  margin: 1vw;
+}
+.product-container:hover {
+  background-color: rgb(47, 51, 60);
+}
+.product-container button {
+  width: 30%;
+  align-self: center;
+}

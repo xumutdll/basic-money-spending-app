@@ -1,25 +1,38 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import "./App.css";
+import React, { Component } from "react";
+import Header from "./Components/header";
+import Product from "./Components/product";
+import products from "./Components/products.json";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
+class App extends Component {
+  state = { money: 10000, basket: [], basketSum: 0 };
+
+  changeBasket = (basket, basketSum) => {
+    this.setState({ basket, basketSum });
+  };
+
+  render() {
+    let { money, basket, basketSum } = this.state;
+
+    return (
+      <div className="App">
         <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+        <Header money={money} basketSum={basketSum} />
+        <div className="all-products">
+          {products.map((item) => (
+            <Product
+              key={item.id}
+              product={item}
+              changeBasket={this.changeBasket}
+              basket={basket}
+              basketSum={basketSum}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default App;
